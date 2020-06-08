@@ -320,7 +320,7 @@ Cuadrado cuadrado;
   Trapecio trapecio;
   Nivel nivel1[] = new Nivel[8];
   Nivel nivel2[] = new Nivel[8];
-  Nivel nivel3[] = new Nivel[8];
+ Nivel nivel3[] = new Nivel[8];
   PFont fuente;
   int x=500;
   int y=465;
@@ -343,7 +343,7 @@ Cuadrado cuadrado;
   boolean boton2 ;
   boolean boton3 ;
   int i = 0;
-  int d;
+  float d;
   int puntox;
   int puntoy;  
   int puntox2;
@@ -467,7 +467,7 @@ Cuadrado cuadrado;
     nivel1[5].pintartriangulo();
     nivel1[6].pintartrapecio();
   }
-  else if(a == 2){
+  else if(a == 1){
     nivel2[0].pintarcuadrado();
     nivel2[1].pintartriangulo();
     nivel2[2].pintartriangulo();
@@ -476,7 +476,7 @@ Cuadrado cuadrado;
     nivel2[5].pintartriangulo();
     nivel2[6].pintartrapecio();
   }
-    else if(a == 1){
+    /*else if(a == 1){
     nivel3[0].pintarcuadrado();
     nivel3[1].pintartriangulo();
     nivel3[2].pintartriangulo();
@@ -484,7 +484,7 @@ Cuadrado cuadrado;
     nivel3[4].pintartriangulo();
     nivel3[5].pintartriangulo();
     nivel3[6].pintartrapecio();
-  }
+  }*/
   }
   
   
@@ -520,17 +520,15 @@ Cuadrado cuadrado;
   }
   void juegonuevo(){
     
-        if((distanciac(i) <2)&& (distanciac(i) > -2) && ((distanciat(i) <2   && distanciat2(i) <2 ) && (distanciat(i) >-2   && distanciat2(i) >-2 ) || (distanciat_(i) <2   && distanciat2_(i) <2)&&(distanciat_(i) >-2  && distanciat2_(i)> -2)  && (distanciat3(i) <2)&&(distanciat3(i) >-2) && ((distanciat4(i) <2  && distanciat5(i) <2)&& (distanciat4(i) >-2  && distanciat5(i) >-2) || (distanciat4_(i) <2 && distanciat4_(i) <2  && distanciat5_(i) <2)&&(distanciat4_(i) >-2 && distanciat4_(i) >-2  && distanciat5_(i) >-2)) && (distanciatr(i) <2) && (distanciatr(i) >-2))){
-      if((distanciacy(i) <2)&& (distanciacy(i) > -2)&& ((distanciaty(i) <2   && distanciat2y(i) <2 ) && (distanciaty(i) >-2   && distanciat2y(i) >-2 ) || (distanciaty_(i) <2   && distanciat2y_(i) <2)&&(distanciaty_(i) >-2  && distanciat2y_(i)> -2)  && (distanciat3y(i) <2)&&(distanciat3y(i) >-2) && ((distanciat4y(i) <2  && distanciat5y(i) <2)&& (distanciat4y(i) >-2  && distanciat5y(i) >-2) || (distanciat4y_(i) <2 && distanciat4y_(i) <2  && distanciat5y_(i) <2)&&(distanciat4y_(i) >-2 && distanciat4y_(i) >-2  && distanciat5y_(i) >-2)) && (distanciatry(i) <2) && (distanciatry(i) >-2))){
+        if((distanciac(i) <5) && ((distanciat(i) <5 && distanciat2(i) <5)  || (distanciat_(i) <5   && distanciat2_(i) <5))  && (distanciat3(i) <5) && ((distanciat4(i) <5  && distanciat5(i) <5) || (distanciat4_(i) <5  && distanciat5_(i) <5)) && (distanciatr(i) <5) ){
       
-
       if(boton2){
         boton2 = false;
         i = i+1;
         recuperarTangram();
         juegonuevo();
       }
-      }
+
       
     else{
       background(155);
@@ -546,228 +544,111 @@ Cuadrado cuadrado;
     juego();
   }
   }
-  int distanciac(int a){
+  float distanciac(int a){
   if (a == 0){
-    d = nivel1[0].medida()-cuadrado.medida2();
+    d = dist(nivel1[0].posicionx,nivel1[0].posiciony,cuadrado.posicionx,cuadrado.posiciony);
   }
   else if (a == 1){
-    d = nivel2[0].medida()-cuadrado.medida2();
-  }
-  return (d);
-  }
-    int distanciacy(int a){
-  if (a == 0){
-    d = nivel1[0].mediday()-cuadrado.medida2y();
-  }
-  else if (a == 1){
-    d = nivel2[0].mediday()-cuadrado.medida2y();
+    d = dist(nivel2[0].posicionx,nivel2[0].posiciony,cuadrado.posicionx,cuadrado.posiciony);
   }
   return (d);
   }
   
-  int distanciat(int a){
+  float distanciat(int a){
   if (a == 0){
-    d = nivel1[1].medida()-triangulo.medida2();
+    d = dist(nivel1[1].posicionx,nivel1[1].posiciony,triangulo.posicionx,triangulo.posiciony);
   }
   else if (a == 1){
-    d = nivel2[1].medida()-triangulo.medida2();
+    d = dist(nivel2[1].posicionx,nivel2[1].posiciony,triangulo.posicionx,triangulo.posiciony);
   }
   return (d);
   }
-   int distanciaty(int a){
+  float distanciat_(int a){
   if (a == 0){
-    d = nivel1[1].mediday()-triangulo.medida2y();
+    d = dist(nivel1[2].posicionx,nivel1[2].posiciony,triangulo.posicionx,triangulo.posiciony);
   }
   else if (a == 1){
-    d = nivel2[1].mediday()-triangulo.medida2y();
-  }
-  return (d);
-  }
-  int distanciat_(int a){
-  if (a == 0){
-    d = nivel1[2].medida()-triangulo.medida2();
-
-   }
-  else if (a == 1){
-    d = nivel2[2].medida()-triangulo.medida2();
-    
-  }
-  return (d);
-  }
-  int distanciaty_(int a){
-  if (a == 0){
-    d = nivel1[2].mediday()-triangulo.medida2y();
-
-   }
-  else if (a == 1){
-
-    d = nivel2[2].mediday()-triangulo.medida2y();
-
+    d = dist(nivel2[2].posicionx,nivel2[2].posiciony,triangulo.posicionx,triangulo.posiciony);
   }
   return (d);
   }
  
-   int distanciat2_(int a){
+   float distanciat2_(int a){
   if (a == 0){
-    d = nivel1[1].medida()-triangulo2.medida2();
-
-   }
-  else if (a == 1){
-
-    d = nivel2[1].medida()-triangulo2.medida2();
-
+    d = dist(nivel1[1].posicionx,nivel1[1].posiciony,triangulo2.posicionx,triangulo2.posiciony);
   }
-  return (d);
-  }
-   int distanciat2y_(int a){
-  if (a == 0){
-    d = nivel1[1].mediday()-triangulo2.medida2y();
-
-   }
   else if (a == 1){
-
-    d = nivel2[1].mediday()-triangulo2.medida2y();
-
+    d = dist(nivel2[1].posicionx,nivel2[1].posiciony,triangulo2.posicionx,triangulo2.posiciony);
   }
   return (d);
   }
   
-   int distanciat2(int a){
+   float distanciat2(int a){
   if (a == 0){
-  d = nivel1[2].medida()-triangulo2.medida2();
-  
+    d = dist(nivel1[2].posicionx,nivel1[2].posiciony,triangulo2.posicionx,triangulo2.posiciony);
   }
   else if (a == 1){
-    d = nivel2[2].medida()-triangulo2.medida2();
-  }
-  return (d);
-  }
-  int distanciat2y(int a){
-  if (a == 0){
-  d = nivel1[2].mediday()-triangulo2.medida2y();
-  
-  }
-  else if (a == 1){
-    d = nivel2[2].mediday()-triangulo2.medida2y();
+    d = dist(nivel2[2].posicionx,nivel2[2].posiciony,triangulo2.posicionx,triangulo2.posiciony);
   }
   return (d);
   }
   
-   int distanciat3(int a){
+   float distanciat3(int a){
   if (a == 0){
-    d = nivel1[3].medida()-triangulo3.medida2();
+    d = dist(nivel1[3].posicionx,nivel1[3].posiciony,triangulo3.posicionx,triangulo3.posiciony);
   }
   else if (a == 1){
-    d = nivel2[3].medida()-triangulo3.medida2();
-  }
-  return (d);
-  }
-  int distanciat3y(int a){
-  if (a == 0){
-    d = nivel1[3].mediday()-triangulo3.medida2y();
-  }
-  else if (a == 1){
-    d = nivel2[3].mediday()-triangulo3.medida2y();
+    d = dist(nivel2[3].posicionx,nivel2[3].posiciony,triangulo3.posicionx,triangulo3.posiciony);
   }
   return (d);
   }
   
-   int distanciat4(int a){
-  if (a == 0){
-    d = nivel1[4].medida()-triangulo4.medida2();
+   float distanciat4(int a){
+   if (a == 0){
+    d = dist(nivel1[4].posicionx,nivel1[4].posiciony,triangulo4.posicionx,triangulo4.posiciony);
   }
   else if (a == 1){
-    d = nivel2[4].medida()-triangulo4.medida2();
-  }
-  return (d);
-  }
-    int distanciat4y(int a){
-  if (a == 0){
-    d = nivel1[4].mediday()-triangulo4.medida2y();
-  }
-  else if (a == 1){
-    d = nivel2[4].mediday()-triangulo4.medida2y();
+    d = dist(nivel2[4].posicionx,nivel2[4].posiciony,triangulo4.posicionx,triangulo4.posiciony);
   }
   return (d);
   }
   
-     int distanciat4_(int a){
-  if (a == 0){
-   
-    d = nivel1[5].medida()-triangulo4.medida2();
- 
+     float distanciat4_(int a){
+   if (a == 0){
+    d = dist(nivel1[5].posicionx,nivel1[5].posiciony,triangulo4.posicionx,triangulo4.posiciony);
   }
   else if (a == 1){
-    d = nivel2[5].medida()-triangulo4.medida2();
-  }
-  return (d);
-  }
-      int distanciat4y_(int a){
-  if (a == 0){
-   
-    d = nivel1[5].mediday()-triangulo4.medida2y();
- 
-  }
-  else if (a == 1){
-    d = nivel2[5].mediday()-triangulo4.medida2y();
+    d = dist(nivel2[5].posicionx,nivel2[5].posiciony,triangulo4.posicionx,triangulo4.posiciony);
   }
   return (d);
   }
   
-   int distanciat5(int a){
-  if (a == 0){
-    d = nivel1[5].medida()-triangulo5.medida2();
+   float distanciat5(int a){
+    if (a == 0){
+    d = dist(nivel1[5].posicionx,nivel1[5].posiciony,triangulo5.posicionx,triangulo5.posiciony);
   }
   else if (a == 1){
-    d = nivel2[5].medida()-triangulo5.medida2();
-  }
-  return (d);
-  }
-   int distanciat5y(int a){
-  if (a == 0){
-    d = nivel1[5].mediday()-triangulo5.medida2y();
-  }
-  else if (a == 1){
-    d = nivel2[5].mediday()-triangulo5.medida2y();
-  }
-  return (d);
-  }
-     int distanciat5_(int a){
-       if(a == 0){
-    d = nivel1[4].medida()-triangulo5.medida2();
-  }
-  else if (a == 1){
-    d = nivel2[4].medida()-triangulo5.medida2();
-  }
-  return (d);
-  }
-  int distanciat5y_(int a){
-       if(a == 0){
-    d = nivel1[4].mediday()-triangulo5.medida2y();
-  }
-  else if (a == 1){
-    d = nivel2[4].mediday()-triangulo5.medida2y();
+    d = dist(nivel2[5].posicionx,nivel2[5].posiciony,triangulo5.posicionx,triangulo5.posiciony);
   }
   return (d);
   }
 
-
-  
-   int distanciatr(int a){
-  if (a == 0){
-    d = nivel1[6].medida()-trapecio.medida2();
+     float distanciat5_(int a){
+    if (a == 0){
+    d = dist(nivel1[4].posicionx,nivel1[4].posiciony,triangulo5.posicionx,triangulo5.posiciony);
   }
   else if (a == 1){
-    d = nivel2[6].medida()-trapecio.medida2();
+    d = dist(nivel2[4].posicionx,nivel2[4].posiciony,triangulo5.posicionx,triangulo5.posiciony);
   }
   return (d);
   }
-  int distanciatry(int a){
+  
+   float distanciatr(int a){
   if (a == 0){
-    d = nivel1[6].mediday()-trapecio.medida2y();
+    d = dist(nivel1[6].posicionx,nivel1[6].posiciony,trapecio.posicionx,trapecio.posiciony);
   }
   else if (a == 1){
-    d = nivel2[6].mediday()-trapecio.medida2y();
+    d = dist(nivel2[6].posicionx,nivel2[6].posiciony,trapecio.posicionx,trapecio.posiciony);
   }
   return (d);
   }
