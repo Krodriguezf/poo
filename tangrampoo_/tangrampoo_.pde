@@ -520,8 +520,10 @@ Cuadrado cuadrado;
   }
   void juegonuevo(){
     
-    if((distanciac(i) <2)&& (distanciac(i) > -2) && ((distanciat(i) <2   && distanciat2(i) <2 ) && (distanciat(i) >-2   && distanciat2(i) >-2 ) || (distanciat_(i) <10   && distanciat2_(i) <2) &&(distanciat_(i) >-2   && distanciat2_(i) >-2) ) && (distanciat3(i) <2) && ((distanciat4(i) <2  && distanciat5(i) <2)&&(distanciat4(i) <-2  && distanciat5(i) <-2) || (distanciat4_(i) <2 && distanciat4_(i) >-2  && distanciat5_(i) <2)) && (distanciatr(i) <2) && (distanciatr(i) >-2)){
-      if((distanciacy(i) <2)&& (distanciacy(i) > -2)){
+        if((distanciac(i) <2)&& (distanciac(i) > -2) && ((distanciat(i) <2   && distanciat2(i) <2 ) && (distanciat(i) >-2   && distanciat2(i) >-2 ) || (distanciat_(i) <2   && distanciat2_(i) <2)&&(distanciat_(i) >-2  && distanciat2_(i)> -2)  && (distanciat3(i) <2)&&(distanciat3(i) >-2) && ((distanciat4(i) <2  && distanciat5(i) <2)&& (distanciat4(i) >-2  && distanciat5(i) >-2) || (distanciat4_(i) <2 && distanciat4_(i) <2  && distanciat5_(i) <2)&&(distanciat4_(i) >-2 && distanciat4_(i) >-2  && distanciat5_(i) >-2)) && (distanciatr(i) <2) && (distanciatr(i) >-2))){
+      if((distanciacy(i) <2)&& (distanciacy(i) > -2)&& ((distanciaty(i) <2   && distanciat2y(i) <2 ) && (distanciaty(i) >-2   && distanciat2y(i) >-2 ) || (distanciaty_(i) <2   && distanciat2y_(i) <2)&&(distanciaty_(i) >-2  && distanciat2y_(i)> -2)  && (distanciat3y(i) <2)&&(distanciat3y(i) >-2) && ((distanciat4y(i) <2  && distanciat5y(i) <2)&& (distanciat4y(i) >-2  && distanciat5y(i) >-2) || (distanciat4y_(i) <2 && distanciat4y_(i) <2  && distanciat5y_(i) <2)&&(distanciat4y_(i) >-2 && distanciat4y_(i) >-2  && distanciat5y_(i) >-2)) && (distanciatry(i) <2) && (distanciatry(i) >-2))){
+      
+
       if(boton2){
         boton2 = false;
         i = i+1;
@@ -529,6 +531,7 @@ Cuadrado cuadrado;
         juegonuevo();
       }
       }
+      
     else{
       background(155);
       textSize(150);
@@ -587,7 +590,9 @@ Cuadrado cuadrado;
    }
   else if (a == 1){
     d = nivel2[2].medida()-triangulo.medida2();
+    
   }
+  return (d);
   }
   int distanciaty_(int a){
   if (a == 0){
