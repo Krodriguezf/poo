@@ -10,6 +10,8 @@ int b;
 int c;
 int distancia1;
 int distancia2;
+int distancia1y;
+int distancia2y;
 int punty;
   Shape(int posicionx_, int posiciony_, int retraso_, int radianes_, float angulo_, int radioc_,int a_, int b_, int c_ ){
   posicionx = posicionx_;
@@ -44,10 +46,56 @@ void traslacion(){
   }
 }
 }
+class Triangulo extends Shape{
+  int posx1;
+  int posy1;
+  int posx2;
+  int posy2;
+  int posx3;
+  int posy3;
+  
+
+Triangulo(int posicionx_, int posiciony_, int retraso_, int radianes_, float angulo_, int radioc_, int posx1_, int posy1_,int posx2_,int posy2_, int posx3_,int posy3_,int a_,int b_,int c_){
+  super(posicionx_, posiciony_, retraso_, radianes_, angulo_, radioc_,a_,b_,c_);
+  posx1 = posx1_;
+  posy1 = posy1_;
+  posx2 = posx2_;
+  posy2 = posy2_;
+  posx3 = posx3_;
+  posy3 = posy3_;
+}
+
+void pintartriangulo(){
+  fill(a,b,c);
+  keyReleased();
+  push();
+ translate(posicionx,posiciony);
+ rotate(angulo);
+ triangle(posx1,posy1,posx2,posy2,posx3,posy3);
+ fill(a,b,c);
+ noStroke();
+ circle(0,0,radioc);
+ pop();  
+}
+ int medida2(){
+   distancia1 = 1200-(1200-posicionx);
+ //println(distancia1);
+ return distancia1;
+ }
+ 
+ int medida2y(){
+ distancia1y = 800-(800-posiciony);
+ //println(distancia2);
+ return distancia1y;
+}
+}
 class Cuadrado extends Shape{
   int posx;
   int posy;
   int extent;
+
+  
+
 Cuadrado(int posicionx_, int posiciony_, int retraso_, int radianes_, float angulo_, int radioc_, int posx_, int posy_, int extent_,int a_, int b_, int c_){
   super(posicionx_, posiciony_, retraso_, radianes_, angulo_, radioc_,a_,b_,c_);
   posx = posx_;
@@ -67,13 +115,17 @@ void pintarcuadrado(){
  noStroke();
  circle(0,0,radioc);
  pop();
- 
 }  
  int medida2(){
    distancia1 = 1200-(1200-posicionx);
  //println(distancia1);
  return distancia1;
- } 
+ }
+  int medida2y(){
+ distancia1y = 800-(800-posiciony);
+ //println(distancia2);
+ return distancia1y;
+}
   
 }
 class Trapecio extends Shape{
@@ -152,44 +204,12 @@ void keyReleased(){
  //println(distancia1);
  return distancia1;
  }
-
-}
-class Triangulo extends Shape{
-  int posx1;
-  int posy1;
-  int posx2;
-  int posy2;
-  int posx3;
-  int posy3;
-  
-
-Triangulo(int posicionx_, int posiciony_, int retraso_, int radianes_, float angulo_, int radioc_, int posx1_, int posy1_,int posx2_,int posy2_, int posx3_,int posy3_,int a_,int b_,int c_){
-  super(posicionx_, posiciony_, retraso_, radianes_, angulo_, radioc_,a_,b_,c_);
-  posx1 = posx1_;
-  posy1 = posy1_;
-  posx2 = posx2_;
-  posy2 = posy2_;
-  posx3 = posx3_;
-  posy3 = posy3_;
+  int medida2y(){
+ distancia1y = 800-(800-posiciony);
+ //println(distancia2);
+ return distancia1y;
 }
 
-void pintartriangulo(){
-  fill(a,b,c);
-  keyReleased();
-  push();
- translate(posicionx,posiciony);
- rotate(angulo);
- triangle(posx1,posy1,posx2,posy2,posx3,posy3);
- fill(a,b,c);
- noStroke();
- circle(0,0,radioc);
- pop();  
-}
- int medida2(){
-   distancia1 = 1200-(1200-posicionx);
- //println(distancia1);
- return distancia1;
- }
 }
 class Nivel extends Shape{
     int  posx;
@@ -285,8 +305,13 @@ int medida(){
  //println(distancia2);
  return distancia2;
 }
+int mediday(){
+ distancia2y = 800-(800-posiciony);
+ //println(distancia2);
+ return distancia2y;
 }
-  Cuadrado cuadrado;
+}
+Cuadrado cuadrado;
   Triangulo triangulo ;
   Triangulo triangulo2;
   Triangulo triangulo3;
@@ -295,6 +320,7 @@ int medida(){
   Trapecio trapecio;
   Nivel nivel1[] = new Nivel[8];
   Nivel nivel2[] = new Nivel[8];
+  Nivel nivel3[] = new Nivel[8];
   PFont fuente;
   int x=500;
   int y=465;
@@ -304,6 +330,10 @@ int medida(){
   int y_ = 565;
   int w_ = 360;
   int h_ = 40;
+  int x3 = 1000;
+  int y3 = 660;
+  int w3 = 190;
+  int h3 = 40;
   int x2=450;
   int y2=350;
   int w2=250;
@@ -311,6 +341,7 @@ int medida(){
   boolean boton = false;
   boolean boton_ = false;
   boolean boton2 ;
+  boolean boton3 ;
   int i = 0;
   int d;
   int puntox;
@@ -340,7 +371,7 @@ int medida(){
   
   }
   void mousePressed(){
-    if((mouseX>x)&&(mouseX< x2+w2)&&(mouseY>y2)&&(mouseY< y2+h2)){
+    if((mouseX>x2)&&(mouseX< x2+w2)&&(mouseY>y2)&&(mouseY< y2+h2)){
       if(boton2){
         boton2 = false;
       }
@@ -348,7 +379,16 @@ int medida(){
       boton2 = true;
       }
     }
+    else if((mouseX>x3)&&(mouseX< x3+w3)&&(mouseY>y3)&&(mouseY< y3+h3)){
+      if(boton3){
+        boton3 = false;
+      }
+      else{
+      boton3 = true;
+      }
+    }
    }
+   
   
   void menu(){  
   background(0);
@@ -417,6 +457,7 @@ int medida(){
     }
     
   void nivel(int a){
+    //loaddata();
     if(a == 0){
     nivel1[0].pintarcuadrado();
     nivel1[1].pintartriangulo();
@@ -426,7 +467,7 @@ int medida(){
     nivel1[5].pintartriangulo();
     nivel1[6].pintartrapecio();
   }
-  else if(a == 1){
+  else if(a == 2){
     nivel2[0].pintarcuadrado();
     nivel2[1].pintartriangulo();
     nivel2[2].pintartriangulo();
@@ -434,6 +475,15 @@ int medida(){
     nivel2[4].pintartriangulo();
     nivel2[5].pintartriangulo();
     nivel2[6].pintartrapecio();
+  }
+    else if(a == 1){
+    nivel3[0].pintarcuadrado();
+    nivel3[1].pintartriangulo();
+    nivel3[2].pintartriangulo();
+    nivel3[3].pintartriangulo();
+    nivel3[4].pintartriangulo();
+    nivel3[5].pintartriangulo();
+    nivel3[6].pintartrapecio();
   }
   }
   
@@ -469,13 +519,15 @@ int medida(){
   
   }
   void juegonuevo(){
-
-    if((distanciac(i) <2) && ((distanciat(i) <2   && distanciat2(i) <2 ) || (distanciat_(i) <10   && distanciat2_(i) <2)) && (distanciat3(i) <2) && ((distanciat4(i) <2  && distanciat5(i) <2) || (distanciat4_(i) <2  && distanciat5_(i) <2)) && (distanciatr(i) <2) ){
+    
+    if((distanciac(i) <2)&& (distanciac(i) > -2) && ((distanciat(i) <2   && distanciat2(i) <2 ) && (distanciat(i) >-2   && distanciat2(i) >-2 ) || (distanciat_(i) <10   && distanciat2_(i) <2) &&(distanciat_(i) >-2   && distanciat2_(i) >-2) ) && (distanciat3(i) <2) && ((distanciat4(i) <2  && distanciat5(i) <2)&&(distanciat4(i) <-2  && distanciat5(i) <-2) || (distanciat4_(i) <2 && distanciat4_(i) >-2  && distanciat5_(i) <2)) && (distanciatr(i) <2) && (distanciatr(i) >-2)){
+      if((distanciacy(i) <2)&& (distanciacy(i) > -2)){
       if(boton2){
         boton2 = false;
         i = i+1;
         recuperarTangram();
         juegonuevo();
+      }
       }
     else{
       background(155);
@@ -500,6 +552,15 @@ int medida(){
   }
   return (d);
   }
+    int distanciacy(int a){
+  if (a == 0){
+    d = nivel1[0].mediday()-cuadrado.medida2y();
+  }
+  else if (a == 1){
+    d = nivel2[0].mediday()-cuadrado.medida2y();
+  }
+  return (d);
+  }
   
   int distanciat(int a){
   if (a == 0){
@@ -510,15 +571,32 @@ int medida(){
   }
   return (d);
   }
-  
+   int distanciaty(int a){
+  if (a == 0){
+    d = nivel1[1].mediday()-triangulo.medida2y();
+  }
+  else if (a == 1){
+    d = nivel2[1].mediday()-triangulo.medida2y();
+  }
+  return (d);
+  }
   int distanciat_(int a){
   if (a == 0){
     d = nivel1[2].medida()-triangulo.medida2();
 
    }
   else if (a == 1){
-
     d = nivel2[2].medida()-triangulo.medida2();
+  }
+  }
+  int distanciaty_(int a){
+  if (a == 0){
+    d = nivel1[2].mediday()-triangulo.medida2y();
+
+   }
+  else if (a == 1){
+
+    d = nivel2[2].mediday()-triangulo.medida2y();
 
   }
   return (d);
@@ -536,6 +614,18 @@ int medida(){
   }
   return (d);
   }
+   int distanciat2y_(int a){
+  if (a == 0){
+    d = nivel1[1].mediday()-triangulo2.medida2y();
+
+   }
+  else if (a == 1){
+
+    d = nivel2[1].mediday()-triangulo2.medida2y();
+
+  }
+  return (d);
+  }
   
    int distanciat2(int a){
   if (a == 0){
@@ -544,6 +634,16 @@ int medida(){
   }
   else if (a == 1){
     d = nivel2[2].medida()-triangulo2.medida2();
+  }
+  return (d);
+  }
+  int distanciat2y(int a){
+  if (a == 0){
+  d = nivel1[2].mediday()-triangulo2.medida2y();
+  
+  }
+  else if (a == 1){
+    d = nivel2[2].mediday()-triangulo2.medida2y();
   }
   return (d);
   }
@@ -557,6 +657,15 @@ int medida(){
   }
   return (d);
   }
+  int distanciat3y(int a){
+  if (a == 0){
+    d = nivel1[3].mediday()-triangulo3.medida2y();
+  }
+  else if (a == 1){
+    d = nivel2[3].mediday()-triangulo3.medida2y();
+  }
+  return (d);
+  }
   
    int distanciat4(int a){
   if (a == 0){
@@ -564,6 +673,15 @@ int medida(){
   }
   else if (a == 1){
     d = nivel2[4].medida()-triangulo4.medida2();
+  }
+  return (d);
+  }
+    int distanciat4y(int a){
+  if (a == 0){
+    d = nivel1[4].mediday()-triangulo4.medida2y();
+  }
+  else if (a == 1){
+    d = nivel2[4].mediday()-triangulo4.medida2y();
   }
   return (d);
   }
@@ -579,6 +697,17 @@ int medida(){
   }
   return (d);
   }
+      int distanciat4y_(int a){
+  if (a == 0){
+   
+    d = nivel1[5].mediday()-triangulo4.medida2y();
+ 
+  }
+  else if (a == 1){
+    d = nivel2[5].mediday()-triangulo4.medida2y();
+  }
+  return (d);
+  }
   
    int distanciat5(int a){
   if (a == 0){
@@ -589,7 +718,15 @@ int medida(){
   }
   return (d);
   }
-  
+   int distanciat5y(int a){
+  if (a == 0){
+    d = nivel1[5].mediday()-triangulo5.medida2y();
+  }
+  else if (a == 1){
+    d = nivel2[5].mediday()-triangulo5.medida2y();
+  }
+  return (d);
+  }
      int distanciat5_(int a){
        if(a == 0){
     d = nivel1[4].medida()-triangulo5.medida2();
@@ -599,6 +736,16 @@ int medida(){
   }
   return (d);
   }
+  int distanciat5y_(int a){
+       if(a == 0){
+    d = nivel1[4].mediday()-triangulo5.medida2y();
+  }
+  else if (a == 1){
+    d = nivel2[4].mediday()-triangulo5.medida2y();
+  }
+  return (d);
+  }
+
 
   
    int distanciatr(int a){
@@ -610,76 +757,63 @@ int medida(){
   }
   return (d);
   }
-  /*
-  void loadData(String nombre) {
-  JSONObject json = loadJSONObject("data/"+nombre+".json");
-  JSONArray nivelData = json.getJSONArray("piezas");
-  figurasNivel = new Figura[nivelData.size()]; 
-  for (int i = 0; i<nivelData.size(); i++) {
-    JSONObject nivel = nivelData.getJSONObject(i);
-    float  posicion_x = nivel.getFloat("posicion_x");
-    float posicion_y = nivel.getFloat("posicion_y");
-    float rotacion = nivel.getFloat("rotacion");
-    switch (i) {
-    case 0:
-      triangulo=new Triangulo(color(0, 0, 0), posicionx, posicion_y, rotacion, 0.0025*height);
-      break;
-    case 1:
-      triangulo=new Triangulo(color(0, 0, 0), posicion_x, posicion_y, rotacion, 0.0025*height);
-      break;
-    case 2:
-      triangulo=new Triangulo(color(0, 0, 0), posicion_x, posicion_y, rotacion, 0.00175*height);
-      break;
-    case 3:
-      triangulo=new Triangulo(color(0, 0, 0), posicion_x, posicion_y, rotacion, 0.00125*height);
-      break;
-    case 4:
-      figurasNivel[i]=new Triangulo(color(0, 0, 0), posicion_x, posicion_y, rotacion, 0.00125*height);
-      break;
-    case 5:
-      figurasNivel[i]=new Cuadrado(color(0, 0, 0), posc, posicion_y, rotacion, 0.0025*height);
-      break;
-    case 6:
-      figurasNivel[i]=new Paralelogramo(color(0, 0, 0), posicion_x, posicion_y, rotacion, 0.0025*height);
-      break;
-    }
+  int distanciatry(int a){
+  if (a == 0){
+    d = nivel1[6].mediday()-trapecio.medida2y();
   }
-}
-
+  else if (a == 1){
+    d = nivel2[6].mediday()-trapecio.medida2y();
+  }
+  return (d);
+  }
+  
+  
   void modocreador(){
-  background(0);
+     background(0);
+     if(boton3){
+       
+       recuperarTangram();
+       menu();
+     //boton3 = false;
+     }else{
+      textSize(50);
+  noFill();
+  rect(x3,y3,w3,h3);
+  text("Volver",1000,700);
+
   lienzo();
   if (keyPressed) {
     if (key == 'g' || key == 'G') {
       savedata();
     }
   }
+     }
   }  
   
   void savedata(){
     JSONObject json;
     JSONArray nivel = new JSONArray(); 
     JSONObject piezas = new JSONObject();
-    piezas.setFloat("posxc", cuadrado.posicionx);
-    piezas.setFloat("posyc", cuadrado.posiciony);
+    piezas.setInt("posxc", cuadrado.posicionx);
+    piezas.setInt("posyc", cuadrado.posiciony);
     piezas.setFloat("angc", cuadrado.angulo);
-    piezas.setFloat("posxt", triangulo.posicionx);
-    piezas.setFloat("posyt", triangulo.posiciony);
+    piezas.setInt("posxt", triangulo.posicionx);
+    piezas.setInt("posyt", triangulo.posiciony);
     piezas.setFloat("angt", triangulo.angulo);
-    piezas.setFloat("posxt2", triangulo2.posicionx);
-    piezas.setFloat("posyt2", triangulo2.posiciony);
+    piezas.setInt("posxt2", triangulo2.posicionx);
+    piezas.setInt("posyt2", triangulo2.posiciony);
     piezas.setFloat("angt2", triangulo2.angulo);
-    piezas.setFloat("posxt3", triangulo3.posicionx);
-    piezas.setFloat("posyt3", triangulo3.posiciony);
+    piezas.setInt("posxt3", triangulo3.posicionx);
+    piezas.setInt("posyt3", triangulo3.posiciony);
     piezas.setFloat("angt3", triangulo3.angulo);
-    piezas.setFloat("posxt4", triangulo4.posicionx);
-    piezas.setFloat("posyt4", triangulo4.posiciony);
+    piezas.setInt("posxt4", triangulo4.posicionx);
+    piezas.setInt("posyt4", triangulo4.posiciony);
     piezas.setFloat("angt4", triangulo4.angulo);
-    piezas.setFloat("posxt5", triangulo5.posicionx);
-    piezas.setFloat("posyt5", triangulo5.posiciony);
+    piezas.setInt("posxt5", triangulo5.posicionx);
+    piezas.setInt("posyt5", triangulo5.posiciony);
     piezas.setFloat("angt5", triangulo5.angulo);
-    piezas.setFloat("posxtr", trapecio.posicionx);
-    piezas.setFloat("posytr", trapecio.posiciony);
+    piezas.setInt("posxtr", trapecio.posicionx);
+    piezas.setInt("posytr", trapecio.posiciony);
     piezas.setFloat("angtr", trapecio.angulo);  
     
     json = new JSONObject();
@@ -688,7 +822,40 @@ int medida(){
   
   
   }
-  */
+void loaddata(){
+  JSONObject json = loadJSONObject("data/nivel.json");
+  JSONArray niveldata = json.getJSONArray("piezas");
+  JSONObject nivel = niveldata.getJSONObject(0);
+  int posxc = nivel.getInt("posxc");
+  int posyc = nivel.getInt("posyc");
+  float angc = nivel.getFloat("angc");
+  int posxt = nivel.getInt("posxt");
+  int posyt = nivel.getInt("posyt");
+  float angt = nivel.getFloat("angt");
+  int posxt2 = nivel.getInt("posxt2");
+  int posyt2 = nivel.getInt("posyt2");
+  float angt2 = nivel.getFloat("angt2");
+  int posxt3 = nivel.getInt("posxt3");
+  int posyt3 = nivel.getInt("posyt3");
+  float angt3 = nivel.getFloat("angt3");
+  int posxt4 = nivel.getInt("posxt4");
+  int posyt4 = nivel.getInt("posyt4");
+  float angt4 = nivel.getFloat("angt4");
+  int posxt5 = nivel.getInt("posxt5");
+  int posyt5 = nivel.getInt("posyt5");
+  float angt5 = nivel.getFloat("angt5");
+  int posxtr = nivel.getInt("posxtr");
+  int posytr = nivel.getInt("posytr");
+  float angtr = nivel.getFloat("angtr");
+  nivel3[0] = new Nivel(posxc, posyc, 0, 0,angc, 0,-60,-55,124,120,145,150);
+  nivel3[1] = new Nivel(posxt,posyt,0,0,angt,0,-180,-50,-5,125,170,-50,120,145,150);
+  nivel3[2] = new Nivel(posxt2,posyt2,0,0,angt2,0,-180,-50,-5,125,170,-50,120,145,150);
+  nivel3[3] = new Nivel(posxt3,posyt3,0,0,angt3,0,-125,-45,-5,75,115,-45,120,145,150);
+  nivel3[4] = new Nivel(posxt4,posyt4, 0, 0,angt4, 0,-83,-33,3,52,87,-33,120,145,150);
+  nivel3[5] = new Nivel(posxt5,posyt5, 0, 0,angt5, 0,-83,-33,3,52,87,-33,120,145,150);
+  nivel3[6] = new Nivel(posxtr,posytr, 0, 0,angtr,  0,-63,-8,63,118,60,-8,-63,-135,120,145,150);
+  }
+  
   void setup(){
     size (1200,700,P2D);
     fuente = loadFont("AlgerianTangram.vlw");
@@ -723,7 +890,7 @@ int medida(){
     juegonuevo();
     }
     else if(boton_){
-    //modocreador();
+    modocreador();
     }
     else{
     menu();
